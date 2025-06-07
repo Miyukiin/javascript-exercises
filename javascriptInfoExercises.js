@@ -74,6 +74,88 @@ function unique(arr) {
   return result;
 }
 
-countShuffleAppearances();
+// Map to names
+function mapToNames(){
+    let john = { name: "John", age: 25 };
+    let pete = { name: "Pete", age: 30 };
+    let mary = { name: "Mary", age: 28 };
 
-//console.log(camelize("-background-color"));
+    let users = [ john, pete, mary ];
+
+    let names = users.map((item) => item.name);
+
+    console.log( names ); // John, Pete, Mary
+}
+
+// Map to objects
+function mapToObjects(){
+    let john = { name: "John", surname: "Smith", id: 1 };
+    let pete = { name: "Pete", surname: "Hunt", id: 2 };
+    let mary = { name: "Mary", surname: "Key", id: 3 };
+
+    let users = [ john, pete, mary ];
+
+    let usersMapped = users.map((item) => ({"fullName": item.name + " " + item.surname, "id": item.id})); 
+
+    /*
+    usersMapped = [
+    { fullName: "John Smith", id: 1 },
+    { fullName: "Pete Hunt", id: 2 },
+    { fullName: "Mary Key", id: 3 }
+    ]
+    */
+
+    console.log( usersMapped[0].id ) // 1
+    console.log( usersMapped[0].fullName ) // John Smith
+}
+
+function sortByAge(users){
+    let john = { name: "John", age: 25 };
+    let pete = { name: "Pete", age: 30 };
+    let mary = { name: "Mary", age: 28 };
+
+    let arr = [ pete, john, mary ];
+
+    arr.sort((a,b) => a.age - b.age);
+
+    console.log(arr[0].name); // John
+    console.log(arr[1].name); // Mary
+    console.log(arr[2].name); // Pete
+}
+
+function getAverageAge(users){
+    let john = { name: "John", age: 25 };
+    let pete = { name: "Pete", age: 30 };
+    let mary = { name: "Mary", age: 29 };
+
+    let arr = [ john, pete, mary ];
+
+    let averageAge = arr.reduce((acc,currentValue) => (acc + currentValue.age / 3), 0)
+
+    console.log( averageAge ); // (25 + 30 + 29) / 3 = 28
+}
+
+function groupById(arr){
+    let users = [
+        {id: 'john', name: "John Smith", age: 20},
+        {id: 'ann', name: "Ann Smith", age: 24},
+        {id: 'pete', name: "Pete Peterson", age: 31},
+    ];
+
+    let usersById = users.reduce((obj, value) => {
+        obj[value.id] = value;
+        return obj;
+    }, {})
+
+    console.log(usersById);
+    /*
+    // after the call we should have:
+
+    usersById = {
+    john: {id: 'john', name: "John Smith", age: 20},
+    ann: {id: 'ann', name: "Ann Smith", age: 24},
+    pete: {id: 'pete', name: "Pete Peterson", age: 31},
+    }
+    */
+}
+groupById();
